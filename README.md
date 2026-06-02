@@ -1,51 +1,85 @@
-# DriverNet AI — Autonomous Driving Intelligence
+# DriverNet AI — Intelligent Autonomous Driving System
 
 ![DriverNet AI Demo](demo.webp)
 
-DriverNet AI is an end-to-end deep learning system for self-driving vehicles, powered by a Convolutional Neural Network (CNN) architecture inspired by NVIDIA's autonomous driving research. The model processes raw camera feeds and predicts precise steering angles in real-time, learning directly from human driving behavior using Behavioral Cloning.
+DriverNet AI is a deep learning–based autonomous driving platform designed to predict steering commands directly from road images. Inspired by modern end-to-end self-driving approaches, the system learns driving behavior from recorded human driving data and generates smooth steering decisions without relying on manually engineered rules.
 
-## Features
+## Key Highlights
 
-- **Real-Time Interactive Simulator**: Experience real-time AI steering predictions. Adjust road curvature to see how the model reacts.
-- **Advanced CNN Architecture**: Built with PyTorch, the network features 5 convolutional layers and 4 fully connected layers optimized for spatial feature extraction.
-- **Robust Data Augmentation Pipeline**: Handles dynamic cropping, resizing, color space conversion (RGB → YUV), and random translations/brightness adjustments to ensure the model generalizes across diverse road conditions.
-- **Live Training Dashboard**: Watch the model converge in real-time with an interactive visualization of the RAdam optimizer and MSE loss tracking.
+* **Interactive Driving Simulation**
+
+  * Explore real-time steering predictions through a browser-based simulator. Modify road conditions and curvature to observe how the AI adapts its driving decisions.
+
+* **Deep Neural Network for Steering Control**
+
+  * Utilizes a custom convolutional neural network implemented in PyTorch to identify road patterns, lane structures, and driving cues from visual input.
+
+* **Enhanced Data Processing Pipeline**
+
+  * Incorporates image preprocessing techniques such as region-of-interest extraction, resizing, color-space transformation, brightness variation, and spatial shifting to improve robustness under varying driving scenarios.
+
+* **Training Performance Visualization**
+
+  * Includes an interactive dashboard for monitoring training progress, optimizer behavior, and loss reduction throughout the learning process.
 
 ## Technology Stack
 
-- **Frontend**: HTML5, Vanilla CSS, Vanilla JavaScript (Canvas API)
-- **Model / Backend**: Python, PyTorch, OpenCV, Flask (optional)
-- **Deployment**: Vercel Ready
+### Frontend
 
-## Local Setup
+* HTML5
+* CSS3
+* JavaScript
+* Canvas API
 
-To run the simulator interface locally, you don't need to install any heavy dependencies. Just serve the static files:
+### Backend & AI Engine
+
+* Python
+* PyTorch
+* OpenCV
+* Flask (Optional Integration)
+
+### Deployment
+
+* Compatible with Vercel and other static hosting platforms
+
+## Running Locally
+
+The simulation interface can be launched without installing machine learning dependencies.
 
 ```bash
-# Clone the repository
-git clone <your-repository-url>
-cd <repository-name>
+git clone <repository-url>
+cd <repository-folder>
 
-# Start a local web server (Python 3)
 python -m http.server 8000
 ```
-Open `http://localhost:8000` in your web browser.
 
-## Deployment
+After starting the server, open:
 
-This dashboard is optimized for seamless deployment as a static site. 
-You can easily deploy it using Vercel:
+```text
+http://localhost:8000
+```
+
+in your browser to access the application.
+
+## Deployment Guide
+
+The project is structured as a lightweight web application and can be deployed quickly using Vercel:
 
 ```bash
 npx vercel --prod
 ```
 
-## Architecture
+## Model Architecture Overview
 
-1. **Input**: 3 × 66 × 200 (YUV format)
-2. **Conv2D**: 24 filters @ 5×5 (stride 2) + ELU
-3. **Conv2D**: 36 filters @ 5×5 (stride 2) + ELU
-4. **Conv2D**: 48 filters @ 5×5 (stride 2) + ELU
-5. **Conv2D**: 64 filters @ 3×3 (stride 1) + ELU
-6. **Conv2D**: 64 filters @ 3×3 (stride 1) + ELU + Dropout
-7. **Fully Connected Layers**: 1152 → 100 → 64 → 10 → 1 (Continuous Steering Angle)
+1. Input Image (66 × 200 × 3)
+2. Convolution Layer – 24 filters (5×5, stride 2) + ELU
+3. Convolution Layer – 36 filters (5×5, stride 2) + ELU
+4. Convolution Layer – 48 filters (5×5, stride 2) + ELU
+5. Convolution Layer – 64 filters (3×3) + ELU
+6. Convolution Layer – 64 filters (3×3) + ELU + Dropout
+7. Fully Connected Layers – 1152 → 100 → 64 → 10 → 1
+8. Output – Continuous Steering Angle Prediction
+
+## Objective
+
+The primary goal of DriverNet AI is to demonstrate how computer vision and deep learning can be combined to create an intelligent driving assistant capable of learning steering behavior directly from visual road data. The project serves as a practical example of behavioral cloning and end-to-end autonomous vehicle control.
