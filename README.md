@@ -1,4 +1,4 @@
-# DriverNet AI — Intelligent Autonomous Driving System
+# DriverNet AI
 
 ![DriverNet AI Demo](demo.webp)
 
